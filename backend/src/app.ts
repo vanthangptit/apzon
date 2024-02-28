@@ -1,12 +1,12 @@
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-
-import userRouter from './modules/v1/user/user.routes';
-
 import { globalErrHandler, middlewareCors } from './middlewares';
 import { connectDB } from './database/database';
 import conf from './config';
+
+import userRouter from './modules/v1/user/user.routes';
+import categoryRouter from './modules/v1/category/category.routes';
 
 const app: Application = express();
 const { port } = conf;
@@ -28,6 +28,7 @@ const init = async () => {
   });
 
   app.use('/api/v1/users', userRouter);
+  app.use('/api/v1/categories', categoryRouter);
 
   // Error handlers middleware
   app.use(globalErrHandler);
