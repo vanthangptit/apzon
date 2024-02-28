@@ -31,7 +31,10 @@ export const createProductCtrl = async (req: Request, res: Response, next: NextF
 
   const { name, price, quantity, brand, description, ownerId, categoryId } = req.body;
   try {
-    const owner = await User.findById(ownerId);
+    const owner = await User.findOne({
+      _id: ownerId,
+      isVendor: true
+    });
     if (!owner) return next(appError('user is invalid.', 400));
     const category = await Category.findById(categoryId);
     if (!category) return next(appError('category is invalid.', 400));
@@ -45,7 +48,7 @@ export const createProductCtrl = async (req: Request, res: Response, next: NextF
       owner: owner._id,
       category: category._id
     }], { session });
-    owner.products.push(product._id);
+    owner.products.push(product[0]._id);
     await owner.save({ session });
 
     await session.commitTransaction();
@@ -53,7 +56,7 @@ export const createProductCtrl = async (req: Request, res: Response, next: NextF
     return res.json({
       status: 200,
       message: 'Product created successful',
-      data: product,
+      data: product[0],
     });
   } catch (e: any) {
     await session.abortTransaction();

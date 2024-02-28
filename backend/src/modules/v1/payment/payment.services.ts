@@ -1,0 +1,1 @@
+export const paymentServices = async (): Promise<boolean> => true;

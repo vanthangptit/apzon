@@ -9,6 +9,8 @@ import userRouter from './modules/v1/user/user.routes';
 import categoryRouter from './modules/v1/category/category.routes';
 import productRouter from './modules/v1/product/product.routes';
 import cartRouter from './modules/v1/cart/cart.routes';
+import orderRouter from './modules/v1/order/order.routes';
+import invoiceRouter from './modules/v1/invoice/invoice.routes';
 
 const app: Application = express();
 const { port } = conf;
@@ -33,6 +35,8 @@ const init = async () => {
   app.use('/api/v1/categories', categoryRouter);
   app.use('/api/v1/products', productRouter);
   app.use('/api/v1/carts', cartRouter);
+  app.use('/api/v1/orders', orderRouter);
+  app.use('/api/v1/invoices', invoiceRouter);
 
   // Error handlers middleware
   app.use(globalErrHandler);

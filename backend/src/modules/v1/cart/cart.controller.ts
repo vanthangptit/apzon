@@ -36,7 +36,10 @@ export const createCartCtrl = async (req: Request, res: Response, next: NextFunc
   }
 
   try {
-    const customerFound = await User.findById(customerId);
+    const customerFound = await User.findOne({
+      _id: customerId,
+      isVendor: false
+    });
     if (!customerFound) {
       return next(appError('User is invalid', 400));
     }
@@ -50,13 +53,16 @@ export const createCartCtrl = async (req: Request, res: Response, next: NextFunc
     if (productFound.quantity < quantity) {
       return next(appError('Purchase quantity exceeds stock quantity.', 400));
     }
+    if (customerFound.products.includes(productFound.id)) {
+      return next(appError('Can not add to cart. You are owner.', 400));
+    }
 
     const cartCreated: any = await Cart.create([{
       quantity, product: productId, customer: customerFound._id
     }], { session });
 
-    if (cartCreated) {
-      customerFound.carts.push(cartCreated._id);
+    if (cartCreated[0]) {
+      customerFound.carts.push(cartCreated[0]._id);
       await customerFound.save({ session });
     }
 
@@ -77,37 +83,38 @@ export const createCartCtrl = async (req: Request, res: Response, next: NextFunc
  * @Update Cart
  */
 export const updateCartCtrl = async (req: Request, res: Response, next: NextFunction) => {
-  const { quantity, productId, userId } = req.body;
+  const { quantity, productId, cartId, userId } = req.body;
   if (Number(quantity) <= 0){
     return next(appError('quantity is invalid', 400));
   }
 
   try {
-    const userFound = await User.findById(userId);
-    if (!userFound) {
-      return next(appError('User is invalid', 400));
+    const cartFound: any = await Cart.findById(cartId)
+      .populate('product')
+      .populate('customer');
+    if (!cartFound) {
+      return next(appError('Cart is invalid', 400));
     }
-    const productFound = await Product.findById(productId);
-    if (!productFound) {
-      return next(appError('Product is invalid', 400));
+    if (cartFound.customer._id.toString() !== userId) {
+      return next(appError('Cart is invalid', 400));
     }
-    if (productFound.quantity === 0) {
+    if (cartFound.product._id.toString() !== productId) {
+      return next(appError('Cart is invalid', 400));
+    }
+    if (cartFound.product.quantity === 0) {
       return next(appError('The product is currently out of stock', 400));
     }
-    if (productFound.quantity < quantity) {
+    if (cartFound.product.quantity < quantity) {
       return next(appError('Purchase quantity exceeds stock quantity.', 400));
     }
 
-    const cartUpdated = await Cart.findOneAndUpdate({
-      quantity,
-      product: productId,
-      user: userId
-    });
+    cartFound.quantity = quantity;
+    await cartFound.save();
 
     return res.json({
       status: 200,
       message: 'Cart updated',
-      data: cartUpdated
+      data: cartFound
     });
   } catch (e: any) {
     return next(appError(e.message));

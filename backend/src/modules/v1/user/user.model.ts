@@ -6,9 +6,14 @@ const UserSchema = new Schema<IUserModel>({
     type: String,
     required: [true, 'name is required'],
   },
-  orderCode: {
+  userCode: {
     type: String,
+    required: true,
     unique: true,
+  },
+  isVendor: {
+    type: Boolean,
+    default: false
   },
   address: {
     type: String,

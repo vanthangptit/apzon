@@ -2,7 +2,8 @@ import { Document, Types } from 'mongoose';
 
 export interface IUserModel extends Document {
   fullName: string
-  orderCode: string
+  userCode: string
+  isVendor: boolean
   email: string
   mobile?: string
   address?: string
