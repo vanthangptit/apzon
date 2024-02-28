@@ -7,6 +7,7 @@ import conf from './config';
 
 import userRouter from './modules/v1/user/user.routes';
 import categoryRouter from './modules/v1/category/category.routes';
+import productRouter from './modules/v1/product/product.routes';
 
 const app: Application = express();
 const { port } = conf;
@@ -29,6 +30,7 @@ const init = async () => {
 
   app.use('/api/v1/users', userRouter);
   app.use('/api/v1/categories', categoryRouter);
+  app.use('/api/v1/product', productRouter);
 
   // Error handlers middleware
   app.use(globalErrHandler);
