@@ -15,11 +15,6 @@ const ProductSchema = new Schema<IFProductModel>({
     type: Number,
     required: [true, 'price is required'],
   },
-  currencyUnit: {
-    type: String,
-    enum: ['vnd', 'usd', 'EUR'],
-    default: 'vnd',
-  },
   quantity: {
     type: Number,
     required: false,
@@ -50,16 +45,20 @@ const ProductSchema = new Schema<IFProductModel>({
     required: false,
   },
 
-  image: {
+  productImage: {
     type: String,
     required: false,
+  },
+  productCode: {
+    type: String,
+    required: true,
+    unique: true
   },
 
   carts: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Cart',
-      required: [true, 'Cart is required'],
     }
   ],
 }, {

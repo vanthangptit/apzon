@@ -13,10 +13,7 @@ export const createCategoryCtrl = async (req: Request, res: Response, next: Next
 
   const { name, ownerId, slug } = req.body;
   try {
-    const owner = await User.findOne({
-      _id: ownerId,
-      isVendor: true
-    });
+    const owner = await User.findById(ownerId);
     if (!owner) return next(appError('User is invalid.', 400));
 
     const category = await Category.create({

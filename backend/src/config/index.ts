@@ -6,6 +6,7 @@ dotenv.config();
 function config() {
   const {
     APP_PORT: port,
+    APP_CURRENCY: currency,
     MONGO_DB: dbName,
     MONGO_USERNAME_DB: dbUsername,
     MONGO_PASSWORD_DB: dbPassword
@@ -17,6 +18,7 @@ function config() {
 
   return {
     ...conf,
+    currency,
     port,
     dbName,
     dbUsername,

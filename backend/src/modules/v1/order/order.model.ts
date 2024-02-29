@@ -2,6 +2,11 @@ import { model, Schema } from 'mongoose';
 import {IFOrderModel} from '../../../domain/interfaces';
 
 const OrderSchema = new Schema<IFOrderModel>({
+  status: {
+    type: String,
+    enum: ['pending', 'success', 'cancel'],
+    default: 'pending'
+  },
   price: {
     type: Number,
     required: [true, 'price is required'],

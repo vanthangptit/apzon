@@ -10,6 +10,10 @@ const OrderItemSchema = new Schema<IFOrderItemModel>({
     type: Number,
     required: [true, 'price is required'],
   },
+  currency: {
+    type: String,
+    enum: ['vnd', 'usd', 'eur']
+  },
   orderId: {
     type: String,
     required: true,

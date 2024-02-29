@@ -6,24 +6,6 @@ import {appError} from '../../../utils';
 import {User} from '../user/user.model';
 import {Cart} from '../cart/cart.model';
 import {createOrderItemServices} from '../orderItem/orderItem.services';
-import {paymentServices} from '../payment/payment.services';
-
-/**
- * @GetALlOrder
- */
-export const getAllOrderCtrl = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const orders = await Order.find({});
-
-    return res.json({
-      status: 200,
-      message: 'Get successfully',
-      data: orders,
-    });
-  } catch (e: any) {
-    return next(appError(e.message));
-  }
-};
 
 /**
  * @Create Order
@@ -82,7 +64,7 @@ export const createOrderCtrl = async (req: Request, res: Response, next: NextFun
     // store to orderItem
     for (const cart of customerFound.carts) {
       await createOrderItemServices(
-        cart.product.quantity,
+        cart.quantity,
         cart.product.price,
         orderItemId,
         cart.product._id,
@@ -93,9 +75,6 @@ export const createOrderCtrl = async (req: Request, res: Response, next: NextFun
     customerFound.carts = [];
     await customerFound.save({ session });
     await Cart.deleteMany({ customer: customerId }).session(session);
-
-    // make payment
-    await paymentServices();
 
     await session.commitTransaction();
     await session.endSession();

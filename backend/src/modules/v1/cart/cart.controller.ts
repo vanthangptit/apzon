@@ -36,10 +36,7 @@ export const createCartCtrl = async (req: Request, res: Response, next: NextFunc
   }
 
   try {
-    const customerFound = await User.findOne({
-      _id: customerId,
-      isVendor: false
-    });
+    const customerFound = await User.findById(customerId);
     if (!customerFound) {
       return next(appError('User is invalid', 400));
     }

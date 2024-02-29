@@ -1,5 +1,8 @@
 import { OrderItem } from './orderItem.model';
 import {Schema} from 'mongoose';
+import conf from './../../../config';
+
+const { currency } = conf;
 
 export const createOrderItemServices = async (
   quantity: number,
@@ -14,6 +17,7 @@ export const createOrderItemServices = async (
     price,
     orderId,
     product,
+    currency,
     order: orderCreated.id,
   }], { session });
   orderCreated.orderItems.push(orderItemCreated[0]._id);

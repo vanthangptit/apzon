@@ -29,17 +29,17 @@ export const createProductCtrl = async (req: Request, res: Response, next: NextF
   const session = await startSession();
   session.startTransaction();
 
-  const { name, price, quantity, brand, description, ownerId, categoryId } = req.body;
+  const { productCode, name, price, quantity, brand, description, ownerId, categoryId } = req.body;
   try {
-    const owner = await User.findOne({
-      _id: ownerId,
-      isVendor: true
-    });
+    const owner = await User.findById(ownerId);
     if (!owner) return next(appError('user is invalid.', 400));
     const category = await Category.findById(categoryId);
     if (!category) return next(appError('category is invalid.', 400));
+    if (owner._id.toString() !== category.owner.toString())
+      return next(appError('user or category is invalid.', 400));
 
     const product: any = await Product.create([{
+      productCode,
       name,
       price,
       quantity,
