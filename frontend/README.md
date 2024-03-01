@@ -1,4 +1,4 @@
-# Apzon
+# Apzon FE
 
 ### Node v18.19.0
 ### Yarn v1.22.21
