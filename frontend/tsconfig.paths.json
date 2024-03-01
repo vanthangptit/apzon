@@ -10,7 +10,8 @@
       "@models/*": ["./src/models/*"],
       "@pages/*": ["./src/pages/*"],
       "@store/*": ["./src/redux/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@themes/*": ["./src/themes/*"]
     }
   }
 }
