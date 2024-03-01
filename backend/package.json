@@ -1,5 +1,5 @@
 {
-  "name": "node-pm2-ts",
+  "name": "apzon-be",
   "version": "1.0.0",
   "main": "dist/app.js",
   "license": "MIT",
