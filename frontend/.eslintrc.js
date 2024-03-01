@@ -55,6 +55,7 @@ module.exports = {
     // ** Stylistic issues
     'brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'block-spacing': ['error', 'always'],
+    // 'comma-dangle': 'error',
     'comma-spacing': 'error',
     'comma-style': 'error',
     'indent': ['error', 2],
@@ -62,17 +63,17 @@ module.exports = {
     'curly': 'error',
     'semi': ['error', 'always'],
     'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }],
-    'object-curly-spacing': [
-      'error',
-      'always', {
-        'arraysInObjects': true,
-        'objectsInObjects': true
-      }
-    ],
-    'array-bracket-spacing': [
-      'error',
-      'always'
-    ],
+    // 'object-curly-spacing': [
+    //   'error',
+    //   'always', {
+    //     'arraysInObjects': true,
+    //     'objectsInObjects': true
+    //   }
+    // ],
+    // 'array-bracket-spacing': [
+    //   'error',
+    //   'always'
+    // ],
     'key-spacing': 'error',
     'template-tag-spacing': [
       'error',

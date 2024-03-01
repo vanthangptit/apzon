@@ -42,7 +42,7 @@ export const rateLimitMiddleware = rateLimit({
 /**
  * @middleware CORS
  */
-export const middlewareCors = cors({
+export const middlewareCors = process.env.NODE_ENV ==='' ? cors() : cors({
   origin: function (origin, callback) {
     if (accessDomain.indexOf(origin) !== -1 || !origin) {
       callback(null, true)
