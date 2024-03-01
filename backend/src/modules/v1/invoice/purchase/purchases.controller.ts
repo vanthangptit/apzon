@@ -17,7 +17,8 @@ export const getAllInvoicePurchaseCtrl = async (req: Request, res: Response, nex
       })
       .populate({
         path: 'supplier'
-      });
+      })
+      .sort({ createdAt: -1 });
 
     return res.json({
       status: 200,

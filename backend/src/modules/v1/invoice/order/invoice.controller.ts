@@ -17,7 +17,8 @@ export const getAllCtrl = async (req: Request, res: Response, next: NextFunction
       })
       .populate({
         path: 'customer'
-      });
+      })
+      .sort({ createdAt: -1 });
 
     return res.json({
       status: 200,
