@@ -1,19 +1,29 @@
 # Apzon
 
-Application built with ReactJS on Frontend and NodeJS on server
-- Node v18.19.0
-- Yarn v1.22.21
+Apzon là một project demo về quản lý danh sách đơn mua hàng và danh sách đơn bán hàng. Cho phép bạn biết các đơn mua hàng/đơn bán hàng đang ở trạng thái nào và update chúng.
+Project demo này được Thang Nguyen sử dụng Typescript và ReactJS phía frontend và nodeJS ở backend.
 
-### Run app
+## Thông tin về source code
 
-### `Run on Backend`
-- cd ./backend
-    + yarn install
-    + yarn run dev
-    + Open [http://localhost:9100](http://localhost:9100) to view it in the browser.
+Đây là một ứng dụng Typescript & ReactJS. 
 
-### `Then run on Frontend`
-- cd ./frontend
-    + yarn install
-    + yarn start
-    + Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Getting Started](#getting-started)
+    - [Requirements](#requirements)
+- [Troubleshooting](#troubleshooting)
+
+
+## Running locally
+### `Backend`
+1. Import the repository and `cd` into the new directory.
+2. Then `cd` into the `backend` directory
+3. Run `yarn install`.
+4. Run `yarn run dev`.
+
+### `Frontend`
+1. `cd` into the `frontend` directory.
+2. Run `yarn install`.
+3. Run `yarn start`.
+
+## Troubleshooting
+
+Nếu bạn có bất kỳ câu hỏi nào, hãy gửi chúng cùng với `hello` tới [nguyenthang.fe@gmail.com](mailto:nguyenthang.fe@gmail.com).
