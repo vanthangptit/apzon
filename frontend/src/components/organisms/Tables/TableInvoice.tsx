@@ -40,6 +40,11 @@ const columns: TableColumnsType<any> = [
     },
   },
   {
+    title: 'Ngày tạo đơn',
+    dataIndex: 'deliveryFee',
+    render: (_, record) => utils.formatInvoiceDate(record.createdAt),
+  },
+  {
     title: 'Thanh toán',
     dataIndex: 'total',
     render: (_, record) => {
