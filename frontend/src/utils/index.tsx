@@ -3,6 +3,7 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 
 type Type = 'success' | 'warn' | 'error';
+type rs = { status: number, message: string }
 
 export const utils = {
   numberWithCurrency: (x?: string, currency?: Currency) => {
@@ -37,5 +38,12 @@ export const utils = {
   },
   toasts: (type: Type, message: string) => {
     return toast[type](message);
+  },
+  handleApiSuccess: (rs: rs) => {
+    if (rs.status === 200) {
+      utils.toasts('success', 'Đã thực hiện thành công');
+    } else {
+      utils.toasts('error', 'Đã có lỗi xảy ra');
+    }
   }
 };

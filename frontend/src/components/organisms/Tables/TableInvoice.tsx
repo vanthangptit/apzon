@@ -1,14 +1,15 @@
 import React, {memo, useState} from 'react';
 import { Table, TableColumnsType, Tag } from 'antd';
-import {IFInvoiceOrder} from '@models/IFInvoice';
 import {utils} from '@src/utils';
-import FormOrderDetail from '@components/organisms/FormOrderDetail';
+import FormInvoiceDetail from '@components/organisms/FormInvoiceDetail';
 
-const columns: TableColumnsType<IFInvoiceOrder> = [
+const columns: TableColumnsType<any> = [
   {
     title: 'Mã hóa đơn',
-    dataIndex: 'orderId',
-    key: 'orderId'
+    dataIndex: 'invoiceId',
+    render: (_, record) => {
+      return record?.orderId ?? record?.purchaseId;
+    },
   },
   {
     title: 'Trạng thái yêu cầu',
@@ -17,7 +18,7 @@ const columns: TableColumnsType<IFInvoiceOrder> = [
       const color = record.status === 'pending' ? 'geekblue' : (record.status === 'cancel' ? 'volcano' : 'green');
       return (
         <Tag color={color} key={record.status}>
-          {record.status.toUpperCase()}
+          {(record.status === 'success' ? 'complete' : record.status).toUpperCase()}
         </Tag>
       );
     },
@@ -26,7 +27,7 @@ const columns: TableColumnsType<IFInvoiceOrder> = [
     title: 'Giảm giá',
     dataIndex: 'discount',
     render: (_, record) => {
-      const currency = record.orderItems[0] ? record.orderItems[0].currency : 'vnd';
+      const currency = record?.orderItems ? record?.orderItems[0].currency : record?.purchaseItems[0].currency;
       return utils.numberWithCurrency(record.discount, currency) + ` ${currency?.toLocaleUpperCase()}`;
     },
   },
@@ -34,7 +35,7 @@ const columns: TableColumnsType<IFInvoiceOrder> = [
     title: 'Phí giao hàng',
     dataIndex: 'deliveryFee',
     render: (_, record) => {
-      const currency = record.orderItems[0] ? record.orderItems[0].currency : 'vnd';
+      const currency = record?.orderItems ? record.orderItems[0].currency : record?.purchaseItems[0].currency;
       return utils.numberWithCurrency(record.deliveryFee, currency) + ` ${currency?.toLocaleUpperCase()}`;
     },
   },
@@ -42,13 +43,13 @@ const columns: TableColumnsType<IFInvoiceOrder> = [
     title: 'Thanh toán',
     dataIndex: 'total',
     render: (_, record) => {
-      const currency = record.orderItems[0] ? record.orderItems[0].currency : 'vnd';
+      const currency = record?.orderItems ? record?.orderItems[0].currency : record?.purchaseItems[0].currency;
       return utils.numberWithCurrency(record.total, currency) + ` ${currency?.toLocaleUpperCase()}`;
     },
   }
 ];
 
-const TableInvoice = ({ data }: { data: IFInvoiceOrder[] }) => {
+const TableInvoice = ({ data }: { data: any[] }) => {
   const [isExpand, setIsExpand] = useState<boolean>(false);
   return (
     <Table
@@ -58,17 +59,12 @@ const TableInvoice = ({ data }: { data: IFInvoiceOrder[] }) => {
       bordered={true}
       expandable={{
         expandedRowRender: (record) => (
-          <FormOrderDetail
-            customer={record.customer}
-            orderItems={record.orderItems}
-            orderDate={record.createdAt}
-            totalInVoice={record.total}
-            orderId={record.orderId}
-            orderStatus={record.status}
+          <FormInvoiceDetail
+            data={record}
             isExpand={isExpand}
           />
         ),
-        rowExpandable: (record) => record.orderId !== 'Not Expandable',
+        rowExpandable: (record) => (record?.orderId ?? record?.purchaseId) !== 'Not Expandable',
         onExpand: (expanded: boolean) => setIsExpand(expanded),
       }}
       rowKey={(record) => record._id}

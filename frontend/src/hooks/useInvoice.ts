@@ -22,7 +22,7 @@ export const useInvoice = () => {
   };
 
   const getAllInvoicePurchase = () => {
-    return dispatch(invoiceStore.getAllInvoiceOrder());
+    return dispatch(invoiceStore.getAllInvoicePurchase());
   };
 
   const updateStatusInvoicePurchase = (requestData: IFUpdateInvoicePurchaseRequest) => {

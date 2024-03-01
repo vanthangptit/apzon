@@ -26,7 +26,7 @@ const Routes = () => {
       </Route>
 
       <Route element={<PrivateRoutes />}>
-        <Route path='/quan-ly-nhap-hang' element={<PurchaseOrder />} />
+        <Route path='/quan-ly-mua-hang' element={<PurchaseOrder />} />
         <Route path='/quan-ly-ban-hang' element={<SalesOrder />} />
       </Route>
 

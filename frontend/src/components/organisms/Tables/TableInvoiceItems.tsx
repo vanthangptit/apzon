@@ -1,9 +1,9 @@
 import React from 'react';
 import {Table, TableColumnsType} from 'antd';
 import {utils} from '@src/utils';
-import {IFInvoiceOrderItems} from '@models/IFInvoiceItems';
+import {IFInvoiceOrderItems, IFInvoicePurchaseItems} from '@models/IFInvoiceItems';
 
-const columns: TableColumnsType<IFInvoiceOrderItems> = [
+const columns: TableColumnsType<any> = [
   {
     title: '#',
     dataIndex: 'key',
@@ -50,7 +50,7 @@ const columns: TableColumnsType<IFInvoiceOrderItems> = [
   }
 ];
 
-const TableOrderItems = ({ data }: { data: IFInvoiceOrderItems[] }) => {
+const TableInvoiceItems = ({ data }: { data: IFInvoiceOrderItems[] | IFInvoicePurchaseItems[] }) => {
   return (
     <Table
       columns={columns}
@@ -67,4 +67,4 @@ const TableOrderItems = ({ data }: { data: IFInvoiceOrderItems[] }) => {
   );
 };
 
-export default TableOrderItems;
+export default TableInvoiceItems;

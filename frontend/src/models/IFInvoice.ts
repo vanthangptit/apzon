@@ -12,19 +12,21 @@ export interface IFUpdateInvoiceOrderRequest {
   }
 }
 
-export interface IFInvoiceOrder {
+interface IFInvoice {
   status: StatusInvoice
   price: bigint
   deliveryFee?: string
   discount?: string
   total?: string
-  orderId: string
-
-  orderItems: IFInvoiceOrderItems[]
-  customer: IFUser
   _id: string
   createdAt: string
   updatedAt: string
+}
+
+export interface IFInvoiceOrder extends IFInvoice {
+  orderId: string
+  orderItems: IFInvoiceOrderItems[]
+  customer: IFUser
 }
 
 export interface IFUpdateInvoicePurchaseRequest {
@@ -36,17 +38,8 @@ export interface IFUpdateInvoicePurchaseRequest {
   }
 }
 
-export interface IFInvoicePurchase {
-  status: StatusInvoice
-  price: bigint
-  deliveryFee?: string
-  discount?: string
-  total?: string
+export interface IFInvoicePurchase extends IFInvoice {
   purchaseId: string
-
   purchaseItems: IFInvoicePurchaseItems[]
   supplier: IFUser
-  _id: string
-  createdAt: string
-  updatedAt: string
 }
