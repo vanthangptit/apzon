@@ -1,1 +1,1 @@
-export const CONSTANTS = {};
+export const API_ROOT_URL = process.env.REACT_APP_API_ROOT;
