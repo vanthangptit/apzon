@@ -16,11 +16,11 @@ export default ({ items }: { items: CollapseProps['items']}) => {
 const CollapseBox = styled(Collapse)`
   width: 100%;
   &.collapse {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: ${({ theme }) => theme.transparent};
 
     .ant-collapse-header {
       margin-bottom: 15px;
-      border-bottom: 1px solid  #ccc;
+      border-bottom: 1px solid ${({ theme }) => theme.gray};
       font-weight: 600;
       * {
         color: #2381d5;

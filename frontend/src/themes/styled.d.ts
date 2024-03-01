@@ -4,9 +4,12 @@ export interface Colors {
   white: Color
   black: Color
   transparent: Color
+  placeholder: Color
 
   // Text
   text1: Color
+  text2: Color
+  text3: Color
 
   // Backgrounds / greys
   bg0: Color
@@ -14,6 +17,9 @@ export interface Colors {
 
   // primaries
   primary1: Color
+
+  //error colors
+  error1: Color
 
   gray: Color,
   gray1: Color,

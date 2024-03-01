@@ -134,7 +134,7 @@ const DivBox = styled.div<{ $isError: boolean; $isHorizontal: boolean }>`
       
       label {
         margin-bottom: 0;
-        border-bottom: 1px dashed #ddd;
+        border-bottom: 1px dashed ${({ theme }) => theme.text3};
       }
   `}
 `;
@@ -146,7 +146,7 @@ const FormIcons = styled.span`
   width: 18px;
   height: 18px;
   line-height: 18px;
-  color: ${({ theme }) => theme.colorEyes};
+  color: ${({ theme }) => theme.text2};
   top: 50%;
   transform: translateY(-50%);
 `;

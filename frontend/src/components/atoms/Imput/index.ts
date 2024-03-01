@@ -3,18 +3,18 @@ import styled from 'styled-components';
 export const Input = styled.input<{ $with?: string; $height?: string }>`
   height: ${({ $height }) => $height ? $height : '40px'};
   width: ${({ $with }) => $with ? $with : 'auto'};
-  color: #000;
-  background-color: transparent;
+  color: ${({ theme }) => theme.black};
+  background-color: ${({ theme }) => theme.transparent};
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${({ theme }) => theme.gray};
 
   &::placeholder {
-    color: #7F7F7F;
+    color: ${({ theme }) => theme.placeholder};
     opacity: 1; /* Firefox */
   }
 
   &::-ms-input-placeholder { /* Edge 12 -18 */
-    color: #7F7F7F;
+    color: ${({ theme }) => theme.placeholder};
   }
 `;

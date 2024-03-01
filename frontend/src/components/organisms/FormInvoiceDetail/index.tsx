@@ -139,8 +139,19 @@ const FormInvoiceDetail = ({
         )}
       </Flex>
       <Flex gap={'20px'}>
-        <Button htmlType={'submit'} disabled={isLoading || data.status !== 'pending'} onClick={() => handleSubmit('success')}>Lưu</Button>
-        <Button htmlType={'submit'} disabled={isLoading || data.status !== 'pending'} onClick={() => handleSubmit('cancel')}>Hủy</Button>
+        <Button
+          htmlType={'submit'} disabled={isLoading || data.status !== 'pending'}
+          onClick={() => handleSubmit('success')}
+        >
+          Lưu
+        </Button>
+        <Button
+          htmlType={'submit'}
+          disabled={isLoading || data.status !== 'pending'}
+          onClick={() => handleSubmit('cancel')}
+        >
+          Hủy
+        </Button>
       </Flex>
     </form>
   );

@@ -53,6 +53,7 @@ const columns: TableColumnsType<any> = [
 const TableInvoiceItems = ({ data }: { data: IFInvoiceOrderItems[] | IFInvoicePurchaseItems[] }) => {
   return (
     <Table
+      scroll={{ x: 700 }}
       columns={columns}
       dataSource={data}
       pagination={false}

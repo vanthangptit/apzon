@@ -1,58 +1,33 @@
-import React, { useState } from 'react';
-import {
-  Layout,
-  Button,
-  Flex,
-  Segmented,
-  FlexProps,
-  SegmentedProps
-} from 'antd';
-
-const boxStyle: React.CSSProperties = {
-  width: '100%',
-  height: 120,
-  // borderRadius: 6,
-  border: '1px solid #40a9ff',
-};
-
-const layoutStyle = {
-  // borderRadius: 8,
-  overflow: 'hidden',
-  width: '100%',
-  maxWidth: '1200px',
-  margin: 'auto'
-};
-
-const justifyOptions = [
-  'flex-start',
-  'center',
-  'flex-end',
-  'space-between',
-  'space-around',
-  'space-evenly',
-];
-
-const alignOptions = [ 'flex-start', 'center', 'flex-end' ];
+import React from 'react';
+import Container from '@components/atoms/Container/Container';
+import TitlePage from '@components/molecules/Titles/TitlePage';
+import { Link } from 'react-router-dom';
+import SectionTitle from '@components/molecules/SectionTitle';
+import {Button, Flex} from 'antd';
 
 const Home: React.FC = () => {
-  const [ justify, setJustify ] = useState<FlexProps['justify']>(justifyOptions[0]);
-  const [ alignItems, setAlignItems ] = useState<FlexProps['align']>(alignOptions[0]);
-
   return (
-    <Layout style={layoutStyle}>
-      <Flex gap="middle" align="start" vertical>
-        <p>Select justify :</p>
-        <Segmented options={justifyOptions} onChange={setJustify as SegmentedProps['onChange']} />
-        <p>Select align :</p>
-        <Segmented options={alignOptions} onChange={setAlignItems as SegmentedProps['onChange']} />
-        <Flex style={boxStyle} justify={justify} align={alignItems}>
-          <Button type="primary">Primary</Button>
-          <Button type="primary">Primary</Button>
-          <Button type="primary">Primary</Button>
-          <Button type="primary">Primary</Button>
+    <React.Fragment>
+      <Container>
+        <TitlePage title={'Welcom to my project'} $align={'center'}/>
+      </Container>
+      <Container>
+        <SectionTitle
+          title={'Hi sir! Cảm ơn đã mời tôi tham gia bài test thú vị này.'}
+          des={'Dưới đây là 2 link để đến 2 chức năng tôi đã hoàn thành:'}
+          $align={'center'}
+        />
+
+        <Flex gap={'20px'} style={{paddingBottom: '100px'}} justify={'center'}>
+          <Button htmlType={'button'} style={{padding: 0}}>
+            <Link to={'/quan-ly-ban-hang'} style={{padding: '10px 15px'}}>Đơn bán hàng</Link>
+          </Button>
+          <Button htmlType={'button'} style={{padding: 0}}>
+            <Link to={'/quan-ly-mua-hang'} style={{padding: '10px 15px'}}>Đơn mua hàng</Link>
+          </Button>
         </Flex>
-      </Flex>
-    </Layout>
+      </Container>
+    </React.Fragment>
   );
 };
 

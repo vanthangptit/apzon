@@ -19,9 +19,12 @@ function colors(): Colors {
     white,
     black,
     transparent: 'rgba(255,255,255,0)',
+    placeholder: '#7F7F7F',
 
     // text
     text1: black,
+    text2: '#9f9f9f',
+    text3: '#dddddd',
 
     // Backgrounds / greys
     bg0: white,
@@ -29,6 +32,9 @@ function colors(): Colors {
 
     //primary colors
     primary1: '#333333',
+
+    //error colors
+    error1: '#f44336',
 
     //gray colors
     gray: '#cccccc',

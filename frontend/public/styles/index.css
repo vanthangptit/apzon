@@ -21,17 +21,6 @@ body {
   scroll-behavior: smooth;
   background-color: #f5f5f5;
 }
-
-html::-webkit-scrollbar {
-  width: 6px;
-}
-html::-webkit-scrollbar-thumb {
-  background: #444444;
-  border-radius: 5px;
-}
-html::-webkit-scrollbar-thumb:hover {
-  background: #444444;
-}
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -124,8 +113,14 @@ a {
 a:focus {
   outline: none;
 }
-a:hover {
-  color: #bc2e1d;
+.ant-table-content {
+  min-width: 900px;
+}
+.ant-table-container {
+  overflow-x: auto;
+}
+.ant-table-expanded-row.ant-table-expanded-row-level-1 {
+  background-color: #f3f3f3 !important;
 }
 .ant-table-cell-row-hover {
   background: unset !important;

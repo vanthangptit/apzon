@@ -1,9 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TitlePage = ({ title, des, margin }: { title: string; des?: string; margin?: string }) => {
+export type Align = 'left' | 'center' | 'right'
+
+const TitlePage = ({
+  title,
+  des,
+  margin,
+  $align
+}: {
+  title: string;
+  des?: string;
+  margin?: string;
+  $align?: Align
+}) => {
   return (
-    <SectionTitle $margin={margin}>
+    <SectionTitle $margin={margin} $align={$align}>
       <Heading>{title}</Heading>
       {des && (
         <Desc>{des}</Desc>
@@ -14,8 +26,9 @@ const TitlePage = ({ title, des, margin }: { title: string; des?: string; margin
 
 export default TitlePage;
 
-const SectionTitle = styled.hgroup<{ $margin?: string }>`
+const SectionTitle = styled.hgroup<{ $margin?: string, $align?: string }>`
   padding: ${({ $margin }) => $margin ?? '20px 0 45px'};
+  text-align: ${({ $align }) => $align ?? 'left'};
 `;
 
 const Heading = styled.h1`
