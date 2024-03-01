@@ -11,6 +11,7 @@ import productRouter from './modules/v1/product/product.routes';
 import cartRouter from './modules/v1/cart/cart.routes';
 import orderRouter from './modules/v1/order/order.routes';
 import invoiceRouter from './modules/v1/invoice/invoice.routes';
+import purchaseRouter from './modules/v1/purchase/purchase.routes';
 
 const app: Application = express();
 const { port } = conf;
@@ -36,6 +37,7 @@ const init = async () => {
   app.use('/api/v1/products', productRouter);
   app.use('/api/v1/carts', cartRouter);
   app.use('/api/v1/orders', orderRouter);
+  app.use('/api/v1/purchases', purchaseRouter);
   app.use('/api/v1/invoices', invoiceRouter);
 
   // Error handlers middleware

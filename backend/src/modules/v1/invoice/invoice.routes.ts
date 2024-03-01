@@ -1,10 +1,10 @@
 import express from 'express';
-import {getByIdCtrl, getAllCtrl, updateOrderStatusCtrl} from './invoice.controller';
+import invoiceOrderRouter from './order/invoice.routes';
+import invoicePurchasesRouter from './purchase/purchases.routes';
 
 const invoiceRouter = express.Router();
 
-invoiceRouter.get('/', getAllCtrl);
-invoiceRouter.get('/:orderId', getByIdCtrl);
-invoiceRouter.put('/:orderId', updateOrderStatusCtrl);
+invoiceRouter.use('/orders', invoiceOrderRouter);
+invoiceRouter.use('/purchases', invoicePurchasesRouter);
 
 export default invoiceRouter;

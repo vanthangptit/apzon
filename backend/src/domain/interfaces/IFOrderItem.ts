@@ -1,6 +1,5 @@
 import { Document, Types } from 'mongoose';
-
-export type CurrencyUnit = 'vnd' | 'usd' | 'eur';
+import { CurrencyUnit } from './index';
 
 export interface IFOrderItemModel extends Document {
   quantity: number

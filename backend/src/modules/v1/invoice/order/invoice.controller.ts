@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
-import {appError} from '../../../utils';
-import {Order} from '../order/order.model';
+import {Order} from '../../order/order.model';
+import {appError} from '../../../../utils';
 
 /**
  * @Get All Invoice
@@ -62,14 +62,16 @@ export const getByIdCtrl = async (req: Request, res: Response, next: NextFunctio
 export const updateOrderStatusCtrl = async (req: Request, res: Response, next: NextFunction) => {
   const { status } = req.body;
   const orderId = req.params.orderId;
+
+  if (status !== 'success' && status !== 'cancel')
+    return next(appError('Status is invalid.', 400));
+
   try {
     const order = await Order.findOne({ orderId });
-    if (!order) {
+    if (!order)
       return next(appError('Order is invalid.', 400));
-    }
-    if (status !== 'success' && status !== 'cancel') {
-      return next(appError('Status is invalid.', 400));
-    }
+    if (order.status !== 'pending')
+      return next(appError('Can not the update. Status is not pending.', 400));
 
     const orderUpdated = await Order.findOneAndUpdate({
       orderId
