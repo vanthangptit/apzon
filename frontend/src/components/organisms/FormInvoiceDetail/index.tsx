@@ -50,7 +50,7 @@ const FormInvoiceDetail = ({
           orderId: data?.orderId
         }
       })
-        .unwrap().then(utils.handleApiSuccess).finally(() => setLoading(false));
+        .unwrap().then(utils.handleApiSuccess).catch().finally(() => setLoading(false));
     } else if (data?.purchaseId) {
       updateStatusInvoicePurchase({
         data: {

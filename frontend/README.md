@@ -1,6 +1,6 @@
 # Apzon FE
 
-### Node v18.19.0
+### Node v18.19.1
 ### Yarn v1.22.21
 
 ### Run app
